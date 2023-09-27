@@ -1,37 +1,35 @@
-name: HTML Validation
+# Data untuk halaman login
+judul_halaman: Halaman Login
+deskripsi_halaman: Selamat datang di halaman login kami.
 
-on:
-  push:
-    branches:
-      - main
+# Daftar elemen form login
+form_login:
+  - label: Username
+    id: username
+    tipe: text
+    placeholder: Masukkan username Anda
+    wajib_diisi: true
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+  - label: Password
+    id: password
+    tipe: password
+    placeholder: Masukkan password Anda
+    wajib_diisi: true
 
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+# Data untuk tombol login
+tombol_login:
+  teks: Login
+  warna_latar: #007BFF
+  warna_teks: #fff
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+# Data kontainer form login
+kontainer_form_login:
+  lebar: 300px
+  margin_atas: 100px
+  padding: 20px
+  warna_latar: #fff
+  radius_bayangan: 5px
 
-    - name: Install Dependencies
-      run: npm install htmlhint
-
-    - name: Run HTML Validation
-      run: npx htmlhint "**/*.html"
-
-    - name: Save HTML Validation Report
-      if: failure()
-      run: npx htmlhint "**/*.html" --format checkstyle > checkstyle.xml
-      continue-on-error: true
-
-    - name: Upload Validation Report
-      if: failure()
-      uses: actions/upload-artifact@v2
-      with:
-        name: html-validation-report
-        path: checkstyle.xml
+# Data CSS tambahan (jika diperlukan)
+css_tambahan: |
+  /* Gantilah dengan CSS tambahan Anda di sini */
